@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">NXloaderRB</string>
+    <string-array name="menu">
+        <item>Injunction</item>
+        <item>Log</item>
+        <item>About</item>
+    </string-array>
+    <string name="filebtn">Choose the bin</string>
+    <string name="fileselmsg">Select a bin file</string>
+    <string name="filepathsrc">No bin file chosen</string>
+    <string name="injectiontxt">Injection</string>
+</resources>
