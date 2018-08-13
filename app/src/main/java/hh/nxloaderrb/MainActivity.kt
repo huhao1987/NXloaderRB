@@ -7,22 +7,14 @@ import android.hardware.usb.UsbDevice
 import android.hardware.usb.UsbManager
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.CompoundButton
-import android.widget.RadioGroup
 import com.github.angads25.filepicker.model.DialogConfigs
-import com.mikepenz.materialdrawer.AccountHeader
-import com.mikepenz.materialdrawer.AccountHeaderBuilder
 import com.mikepenz.materialdrawer.Drawer
 import com.mikepenz.materialdrawer.DrawerBuilder
-import com.mikepenz.materialdrawer.model.DividerDrawerItem
-import com.mikepenz.materialdrawer.model.ProfileDrawerItem
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem
-import com.mikepenz.materialdrawer.model.interfaces.IProfile
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.*
 import com.github.angads25.filepicker.model.DialogProperties
 import java.io.File
 import com.github.angads25.filepicker.view.FilePickerDialog
@@ -37,6 +29,7 @@ class MainActivity : AppCompatActivity() {
     private  var dialog:FilePickerDialog?=null
     private var usbreceiver:BroadcastReceiver?=null
     private var useSX=false
+    private var autointent:Intent?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -72,7 +65,6 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         if (usbreceiver != null) {
             unregisterReceiver(usbreceiver)
-
             super.onDestroy()
         }
     }
@@ -128,7 +120,7 @@ class MainActivity : AppCompatActivity() {
                 var action=intent!!.action
                 when(action)
                 {
-                    ACTION_USB_PERMISSION->{
+                    "hh.USB_PERMISSION"->{
                         synchronized(this) {
                             val device: UsbDevice? = intent.getParcelableExtra(UsbManager.EXTRA_DEVICE)
 
@@ -151,9 +143,7 @@ class MainActivity : AppCompatActivity() {
                         switchstatus.setTextColor(resources.getColor(R.color.red))
                     }
                 }
-
             }
-
         }
         return usbreceiver
     }
@@ -163,7 +153,7 @@ class MainActivity : AppCompatActivity() {
     {
         var menuarray=resources.getStringArray(R.array.menu)
         val item1 = SecondaryDrawerItem().withIdentifier(1).withName(menuarray.get(1)).withSelectable(false)
-        toolbar.title=menuarray.get(0)
+        bartitle.text=menuarray.get(0)
         var leftmenu= DrawerBuilder()
                 .withActivity(this@MainActivity)
                 .addDrawerItems(
@@ -184,6 +174,9 @@ class MainActivity : AppCompatActivity() {
 
                 })
                 .build()
+        slidemenu.setOnClickListener {
+            leftmenu.openDrawer()
+        }
     }
 
 //    Init the elements and functions
@@ -200,7 +193,12 @@ class MainActivity : AppCompatActivity() {
         properties.extensions =binextension.toTypedArray()
         var sharepreferences=getSharedPreferences("Config", Context.MODE_PRIVATE)
         useSX = sharepreferences.getBoolean("useSX", false)
-        if(useSX)setsxosswitch.isChecked=useSX
+        setsxosswitch.isChecked=useSX
+        if(useSX){
+            filebtn.isClickable=false
+            filepath.text=getString(R.string.sxossetdes)
+            fileselection.setBackgroundColor(resources.getColor(R.color.gray))
+        }
         setsxosswitch.setOnCheckedChangeListener(object:CompoundButton.OnCheckedChangeListener{
             override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
                 var sharepreferences=getSharedPreferences("Config", Context.MODE_PRIVATE)
@@ -239,16 +237,21 @@ class MainActivity : AppCompatActivity() {
          dialog!!.show()
         }
         injection.setOnClickListener {
-            val intent = intent
             var usbManager=getSystemService(Context.USB_SERVICE) as UsbManager
             var devicelist=usbManager.deviceList
 
             for(a in devicelist)
             {
                 if(a.value.productId==APX_PID&&a.value.vendorId==APX_VID) {
-                    var u=PrimaryLoader()
-                    if(u!=null)
-                    u.handleDevice(this,a.value,useSX)
+                    Thread(Runnable {
+                        var u=PrimaryLoader()
+                        if(u!=null) {
+                            var sharepreferences=getSharedPreferences("Config", Context.MODE_PRIVATE)
+                            var useSX = sharepreferences.getBoolean("useSX", false)
+                            u.handleDevice(this, a.value, useSX)
+                        }
+                    }).start()
+
                 }
             }
         }

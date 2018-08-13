@@ -12,23 +12,45 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/red"
-        ></android.support.v7.widget.Toolbar>
+        >
+        <ImageView
+            android:id="@+id/slidemenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_menu_white_24dp"/>
+        <TextView
+            android:id="@+id/bartitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:gravity="center_horizontal"
+            />
+    </android.support.v7.widget.Toolbar>
+    <ScrollView
+        android:layout_below="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <TextView
         android:id="@+id/switchstatus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar"
         android:text="@string/devicenotconnection"
+        android:layout_marginTop="20dp"
         android:gravity="center"
         android:textColor="@color/red"/>
     <android.support.v7.widget.SwitchCompat
         android:id="@+id/setsxosswitch"
         android:layout_below="@+id/switchstatus"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
+        app:switchPadding="10dp"
+        android:layout_centerInParent="true"
         android:text="@string/sxosset"/>
     <TextView
         android:id="@+id/sxtip"

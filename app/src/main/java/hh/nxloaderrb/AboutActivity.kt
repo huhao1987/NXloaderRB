@@ -14,7 +14,10 @@ class AboutActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about)
         var menuarray=resources.getStringArray(R.array.menu)
-        toolbar.title=menuarray.get(1)
+        bartitle.text=menuarray.get(1)
+        slidemenu.setOnClickListener {
+            onBackPressed()
+        }
         orauthor.setText(getString(R.string.orauthor,url1))
         orauthor.setOnClickListener{
             openurl(url1)
