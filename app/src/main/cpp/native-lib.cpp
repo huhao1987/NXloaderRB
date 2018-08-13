@@ -5,9 +5,10 @@
 #include <linux/usbdevice_fs.h>
 #include <linux/usb/ch9.h>
 
+//Base on https://github.com/DavidBuchanan314/NXLoader
 extern "C" JNIEXPORT jint
 JNICALL
-Java_io_github_davidbuchanan314_nxloader_PrimaryLoader_nativeTriggerExploit(
+Java_hh_nxloaderrb_PrimaryLoader_nativeTriggerExploit(
         JNIEnv *env,
         jobject /* this */,
         jint fd,
