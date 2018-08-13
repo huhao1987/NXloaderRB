@@ -2,11 +2,20 @@
     <string name="app_name">NXloaderRB</string>
     <string-array name="menu">
         <item>Injunction</item>
-        <item>Log</item>
         <item>About</item>
     </string-array>
+    <string name="devicenotconnection">The device is not connected</string>
+    <string name="deviceconnection">The device is connected</string>
     <string name="filebtn">Choose the bin</string>
     <string name="fileselmsg">Select a bin file</string>
+    <string name="filesepo">Select</string>
+    <string name="filesena">Cancel</string>
+    <string name="sxosset">Use SX os bin</string>
+    <string name="sxossetdes">Using SX os bin</string>
+    <string name="sxtip">I am not quite sure about the SX os bin file works or not, because I don`t have the SX os or Pro, if it doesn`t work, you could private me the file or use the custom bin</string>
     <string name="filepathsrc">No bin file chosen</string>
     <string name="injectiontxt">Injection</string>
+    <string name="orauthor">Code modification is based on %1$s</string>
+    <string name="orauthor2">Heavily based on Fusée Gelée</string>
+    <string name="aboutdes">The reason of this app`s done is that the NXLoader is not running very well on my device when I select my own bin file.So have fun with your switch then.</string>
 </resources>

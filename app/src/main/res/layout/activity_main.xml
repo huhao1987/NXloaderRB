@@ -5,9 +5,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".MainActivity">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/red"
+        ></android.support.v7.widget.Toolbar>
+    <TextView
+        android:id="@+id/switchstatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:text="@string/devicenotconnection"
+        android:gravity="center"
+        android:textColor="@color/red"/>
+    <android.support.v7.widget.SwitchCompat
+        android:id="@+id/setsxosswitch"
+        android:layout_below="@+id/switchstatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:text="@string/sxosset"/>
+    <TextView
+        android:id="@+id/sxtip"
+        android:layout_below="@+id/setsxosswitch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:text="@string/sxtip"/>
     <RelativeLayout
         android:id="@+id/fileselection"
+        android:layout_below="@+id/sxtip"
         android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -16,8 +49,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="5dp"
+    android:layout_centerVertical="true"
     android:text="@string/filepathsrc"
     android:layout_toLeftOf="@+id/filebtn"/>
+
 <Button
     android:id="@+id/filebtn"
     android:layout_width="wrap_content"
@@ -26,8 +61,10 @@
     android:layout_marginRight="5dp"
     android:layout_alignParentRight="true"
     android:textAllCaps="false"
+
     />
     </RelativeLayout>
+
     <Button
         android:id="@+id/injection"
         android:layout_below="@+id/fileselection"
