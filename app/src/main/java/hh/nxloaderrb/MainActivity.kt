@@ -153,7 +153,7 @@ class MainActivity : AppCompatActivity() {
     {
         var menuarray=resources.getStringArray(R.array.menu)
         val item1 = SecondaryDrawerItem().withIdentifier(1).withName(menuarray.get(1)).withSelectable(false)
-        bartitle.text=menuarray.get(0)
+//        bartitle.text=menuarray.get(0)
         var leftmenu= DrawerBuilder()
                 .withActivity(this@MainActivity)
                 .addDrawerItems(
