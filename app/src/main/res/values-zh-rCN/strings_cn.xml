@@ -1,2 +1,22 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_name">NXloaderRB</string>
+    <string-array name="menu">
+        <item>注入</item>
+        <item>关于</item>
+    </string-array>
+    <string name="devicenotconnection">Switch未连接</string>
+    <string name="deviceconnection">Switch已连接</string>
+    <string name="filebtn">选择bin文件</string>
+    <string name="fileselmsg">选择bin文件</string>
+    <string name="filesepo">选择</string>
+    <string name="filesena">取消</string>
+    <string name="sxosset">使用SX os的bin文件</string>
+    <string name="sxossetdes">使用SX os的bin文件</string>
+    <string name="autoinject">自动注入</string>
+    <string name="sxtip">我没用过SX设备或者SX os,所以也不太确定SX os的bin文件能不能用，如果用不了，可以自己选择bin文件注入</string>
+    <string name="filepathsrc">未选择bin文件</string>
+    <string name="injectiontxt">注入</string>
+    <string name="orauthor">代码基于 %1$s</string>
+    <string name="orauthor2">Heavily based on Fusée Gelée</string>
+    <string name="aboutdes">因为NXloader我用着有些问题，才有这个app的诞生，没啥了。</string>
+</resources>
