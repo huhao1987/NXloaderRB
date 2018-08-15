@@ -19,4 +19,7 @@
     <string name="orauthor">代码基于 %1$s</string>
     <string name="orauthor2">Heavily based on Fusée Gelée</string>
     <string name="aboutdes">因为NXloader我用着有些问题，才有这个app的诞生，没啥了。</string>
+    <string name="sdchoose">请选择存储设备</string>
+    <string name="insd">内置存储</string>
+    <string name="outsd">外置SD卡</string>
 </resources>

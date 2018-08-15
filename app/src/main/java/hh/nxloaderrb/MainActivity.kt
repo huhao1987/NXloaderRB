@@ -1,5 +1,7 @@
 package hh.nxloaderrb
 
+import android.app.AlertDialog
+import android.app.Dialog
 import android.app.PendingIntent
 import android.content.*
 import android.content.pm.PackageManager
@@ -7,6 +9,7 @@ import android.hardware.usb.UsbDevice
 import android.hardware.usb.UsbManager
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
 import android.view.View
 import android.widget.CompoundButton
 import com.github.angads25.filepicker.model.DialogConfigs
@@ -20,6 +23,9 @@ import java.io.File
 import com.github.angads25.filepicker.view.FilePickerDialog
 import com.github.angads25.filepicker.controller.DialogSelectionListener
 import kotlin.collections.ArrayList
+import android.os.Environment.MEDIA_MOUNTED
+import android.util.Log
+import hh.nxloaderrb.utils.SDCardsUtils
 
 
 class MainActivity : AppCompatActivity() {
@@ -154,6 +160,7 @@ class MainActivity : AppCompatActivity() {
         var menuarray=resources.getStringArray(R.array.menu)
         val item1 = SecondaryDrawerItem().withIdentifier(1).withName(menuarray.get(1)).withSelectable(false)
 //        bartitle.text=menuarray.get(0)
+        bartitle.text=getString(R.string.app_name)+" "+packageManager.getPackageInfo(packageName,0).versionName
         var leftmenu= DrawerBuilder()
                 .withActivity(this@MainActivity)
                 .addDrawerItems(
@@ -179,18 +186,75 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun setFile()
+    {
+
+        filebtn.setOnClickListener {
+            if(SDCardsUtils.getSDCard1(this)!=null){
+                var sddialog=AlertDialog.Builder(this)
+                sddialog.setTitle(R.string.sdchoose)
+                val items = arrayOf(getString(R.string.insd),getString(R.string.outsd))
+
+                sddialog.setItems(items,object:DialogInterface.OnClickListener{
+                    override fun onClick(dialog1: DialogInterface?, which: Int) {
+                        when(which)
+                        {
+                            0-> {
+                                var folder = SDCardsUtils.getSDCard0(this@MainActivity)
+                                filedialog(folder)
+                                dialog!!.show()
+                            }
+
+                            1->            {
+                                var folder=SDCardsUtils.getSDCard1(this@MainActivity)
+                                filedialog(folder)
+                                dialog!!.show()
+
+                            }
+                        }
+                    }
+
+                }).show()
+            }
+            else {
+                var folder = SDCardsUtils.getSDCard0(this@MainActivity)
+                filedialog(folder)
+                dialog!!.show()
+            }
+        }
+    }
+
+    fun filedialog(folder:String){
+        var properties = DialogProperties()
+        properties.selection_mode = DialogConfigs.SINGLE_MODE
+        properties.selection_type = DialogConfigs.FILE_SELECT
+        properties.root = File(folder)
+        properties.error_dir = File(DialogConfigs.DEFAULT_DIR)
+        properties.offset = File(DialogConfigs.DEFAULT_DIR)
+        var exten=ArrayList<String>()
+        exten.add("bin")
+        properties.extensions=exten.toTypedArray()
+        dialog = FilePickerDialog(this@MainActivity, properties)
+        dialog!!.setTitle(getString(R.string.fileselmsg))
+        dialog!!.setPositiveBtnName(getString(R.string.filesepo))
+        dialog!!.setNegativeBtnName(getString(R.string.filesena))
+
+        dialog!!.setDialogSelectionListener (object:DialogSelectionListener{
+            override fun onSelectedFilePaths(files: Array<out String>?) {
+                filepath.text=files!!.get(0)
+                var sharepreferences=getSharedPreferences("Config", Context.MODE_PRIVATE)
+                var shareditor=sharepreferences.edit().putString("binpath",files!!.get(0))
+                shareditor.apply()
+            }
+        })
+    }
 //    Init the elements and functions
     fun setItems()
     {
-        val properties = DialogProperties()
-        properties.selection_mode = DialogConfigs.SINGLE_MODE
-        properties.selection_type = DialogConfigs.FILE_SELECT
-        properties.root = File(DialogConfigs.DEFAULT_DIR)
-        properties.error_dir = File(DialogConfigs.DEFAULT_DIR)
-        properties.offset = File(DialogConfigs.DEFAULT_DIR)
-        var binextension=ArrayList<String>()
-        binextension.add("bin")
-        properties.extensions =binextension.toTypedArray()
+//        var binextension=ArrayList<String>()
+//        binextension.add("bin")
+//        properties.extensions =binextension.toTypedArray()
+        setFile()
         var sharepreferences=getSharedPreferences("Config", Context.MODE_PRIVATE)
         useSX = sharepreferences.getBoolean("useSX", false)
         setsxosswitch.isChecked=useSX
@@ -221,21 +285,7 @@ class MainActivity : AppCompatActivity() {
                 shareditor!!.apply()
             }
         })
-        dialog = FilePickerDialog(this@MainActivity, properties)
-        dialog!!.setTitle(getString(R.string.fileselmsg))
-        dialog!!.setPositiveBtnName(getString(R.string.filesepo))
-        dialog!!.setNegativeBtnName(getString(R.string.filesena))
-        dialog!!.setDialogSelectionListener (object:DialogSelectionListener{
-            override fun onSelectedFilePaths(files: Array<out String>?) {
-                filepath.text=files!!.get(0)
-                var sharepreferences=getSharedPreferences("Config", Context.MODE_PRIVATE)
-                var shareditor=sharepreferences.edit().putString("binpath",files!!.get(0))
-                shareditor.apply()
-            }
-        })
-        filebtn.setOnClickListener {
-         dialog!!.show()
-        }
+
         injection.setOnClickListener {
             var usbManager=getSystemService(Context.USB_SERVICE) as UsbManager
             var devicelist=usbManager.deviceList
@@ -243,17 +293,33 @@ class MainActivity : AppCompatActivity() {
             for(a in devicelist)
             {
                 if(a.value.productId==APX_PID&&a.value.vendorId==APX_VID) {
-                    Thread(Runnable {
+//                    Thread(Runnable {
                         var u=PrimaryLoader()
                         if(u!=null) {
                             var sharepreferences=getSharedPreferences("Config", Context.MODE_PRIVATE)
                             var useSX = sharepreferences.getBoolean("useSX", false)
                             u.handleDevice(this, a.value, useSX)
                         }
-                    }).start()
+//                    }).start()
 
                 }
             }
         }
+
+        autoinjection.setOnCheckedChangeListener(object:CompoundButton.OnCheckedChangeListener{
+            override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
+                if(isChecked)
+                {
+                    autointent=Intent(this@MainActivity,AutoInjectService::class.java)
+                    startService(autointent)
+                }
+                else {
+                    if(autointent!=null)
+                        stopService(autointent)
+                }
+            }
+
+        })
     }
+
 }
