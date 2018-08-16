@@ -24,8 +24,12 @@ import com.github.angads25.filepicker.view.FilePickerDialog
 import com.github.angads25.filepicker.controller.DialogSelectionListener
 import kotlin.collections.ArrayList
 import android.os.Environment.MEDIA_MOUNTED
+import android.os.Looper
 import android.util.Log
+import android.widget.Toast
 import hh.nxloaderrb.utils.SDCardsUtils
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
 
 
 class MainActivity : AppCompatActivity() {
@@ -74,8 +78,9 @@ class MainActivity : AppCompatActivity() {
             super.onDestroy()
         }
     }
-    fun UsbPermissionCheck()
+    fun UsbPermissionCheck():Boolean
     {
+        var connection=false
         var manager =  getSystemService(Context.USB_SERVICE) as UsbManager
 
         var deviceList = manager.getDeviceList();
@@ -86,16 +91,19 @@ class MainActivity : AppCompatActivity() {
             var device=i.value
             if(manager.hasPermission(device))
             {
+                connection=true
                 switchstatus.text=getString(R.string.deviceconnection)
                 switchstatus.setTextColor(resources.getColor(R.color.light_green))
             }
             else {
+                connection=false
                 switchstatus.text=getString(R.string.devicenotconnection)
                 switchstatus.setTextColor(resources.getColor(R.color.red))
                 manager.requestPermission(device, mPermissionIntent)
             }
 
         }
+        return connection
     }
 
 //    File permission check
@@ -141,7 +149,7 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
                     UsbManager.ACTION_USB_DEVICE_ATTACHED->
-                        UsbPermissionCheck()
+                        if(UsbPermissionCheck())injectauto()
 
                     UsbManager.ACTION_USB_DEVICE_DETACHED->
                     {
@@ -251,9 +259,6 @@ class MainActivity : AppCompatActivity() {
 //    Init the elements and functions
     fun setItems()
     {
-//        var binextension=ArrayList<String>()
-//        binextension.add("bin")
-//        properties.extensions =binextension.toTypedArray()
         setFile()
         var sharepreferences=getSharedPreferences("Config", Context.MODE_PRIVATE)
         useSX = sharepreferences.getBoolean("useSX", false)
@@ -285,41 +290,105 @@ class MainActivity : AppCompatActivity() {
                 shareditor!!.apply()
             }
         })
-
+        injectauto()
         injection.setOnClickListener {
-            var usbManager=getSystemService(Context.USB_SERVICE) as UsbManager
-            var devicelist=usbManager.deviceList
+            if(UsbPermissionCheck()) {
+                runOnUiThread {
 
-            for(a in devicelist)
-            {
-                if(a.value.productId==APX_PID&&a.value.vendorId==APX_VID) {
-//                    Thread(Runnable {
-                        var u=PrimaryLoader()
-                        if(u!=null) {
-                            var sharepreferences=getSharedPreferences("Config", Context.MODE_PRIVATE)
-                            var useSX = sharepreferences.getBoolean("useSX", false)
-                            u.handleDevice(this, a.value, useSX)
-                        }
-//                    }).start()
-
+                    injectionloading.visibility = View.VISIBLE
+                    injectionloading.bringToFront()
+                    injectBin()
                 }
             }
+            else
+                    Toastmessage(getString(R.string.devicenotconnection))
+
         }
+
 
         autoinjection.setOnCheckedChangeListener(object:CompoundButton.OnCheckedChangeListener{
             override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
                 if(isChecked)
                 {
-                    autointent=Intent(this@MainActivity,AutoInjectService::class.java)
-                    startService(autointent)
+                   sharepreferences.edit().putBoolean("autoinject",true).apply()
+
+//                    autointent=Intent(this@MainActivity,AutoInjectService::class.java)
+//                    startService(autointent)
                 }
                 else {
-                    if(autointent!=null)
-                        stopService(autointent)
+                   sharepreferences.edit().putBoolean("autoinject",false).apply()
+
+//                    if(autointent!=null)
+//                        stopService(autointent)
                 }
             }
 
         })
     }
 
+    fun injectauto()
+    {
+        var sharepreferences=getSharedPreferences("Config", Context.MODE_PRIVATE)
+
+        var autoinject=sharepreferences.getBoolean("autoinject",false)
+        if(autoinject)
+        {
+            autoinjection.isChecked=true
+            var binpath = sharepreferences.getString("binpath", null)
+            if(binpath!=null)
+                injectBin()
+            else
+                Toastmessage(getString(R.string.filepathsrc))
+        }
+        else autoinjection.isChecked=false
+    }
+    fun injectBin()
+    {
+        var usbManager=getSystemService(Context.USB_SERVICE) as UsbManager
+        var devicelist=usbManager.deviceList
+
+        for(a in devicelist)
+        {
+            if(a.value.productId==APX_PID&&a.value.vendorId==APX_VID) {
+//                    Thread(Runnable {
+                var u=PrimaryLoader()
+                if(u!=null) {
+                    var sharepreferences=getSharedPreferences("Config", Context.MODE_PRIVATE)
+                    var useSX = sharepreferences.getBoolean("useSX", false)
+                    u.handleDevice(this, a.value, object:PrimaryLoader.Injectionprogress {
+                        override fun onFailed(errormsg: String) {
+                            doAsync {
+                                injectionloading.visibility = View.GONE
+                                Toastmessage(errormsg)
+                            }
+                        }
+
+
+                        override fun onCompleted() {
+                            doAsync {
+                                injectionloading.visibility = View.GONE
+                                Toastmessage(getString(R.string.injectsuccess))
+                            }
+                        }
+                    },useSX
+                    )
+                }
+//                    }).start()
+
+            }
+        }
+    }
+    fun Toastmessage(msg:String)
+    {
+        object : Thread() {
+            override fun run() {
+                Looper.prepare()
+                //                CumToast.show(context,messagestr);
+                if (msg != "")
+                    Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show()
+                Looper.loop()
+            }
+
+        }.start()
+    }
 }

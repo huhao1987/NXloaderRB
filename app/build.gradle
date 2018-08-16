@@ -10,8 +10,8 @@ android {
         applicationId "hh.nxloaderrb"
         minSdkVersion 22
         targetSdkVersion 27
-        versionCode 3
-        versionName "1.0.2"
+        versionCode 4
+        versionName "1.0.3"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
@@ -40,6 +40,7 @@ dependencies {
         transitive = true
     }
     implementation 'com.github.angads25:filepicker:1.1.1'
+    implementation "org.jetbrains.anko:anko-commons:0.10.5"
 
 
 }

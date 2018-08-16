@@ -22,4 +22,6 @@
     <string name="sdchoose">请选择存储设备</string>
     <string name="insd">内置存储</string>
     <string name="outsd">外置SD卡</string>
+    <string name="injecting">正在注入...</string>
+    <string name="injectsuccess">注入成功</string>
 </resources>

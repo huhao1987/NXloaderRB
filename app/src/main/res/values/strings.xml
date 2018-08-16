@@ -22,5 +22,7 @@
     <string name="sdchoose">Please choose the storage</string>
     <string name="insd">Inside storage</string>
     <string name="outsd">SD card</string>
+    <string name="injecting">The bin is injecting...</string>
+    <string name="injectsuccess">Injection success</string>
 
 </resources>
