@@ -20,7 +20,7 @@ import java.nio.ByteOrder
 
 class PrimaryLoader  {
     private val TAG = "ConnectTag"
-    fun handleDevice(context: Context, device: UsbDevice,useSX:Boolean=false) {
+    fun handleDevice(context: Context, device: UsbDevice,injectionprogress: Injectionprogress,useSX:Boolean=false) {
         Log.d(TAG, "[+] Launching primary payload!!!")
 
         val mUsbManager = context.getSystemService(Context.USB_SERVICE) as UsbManager
@@ -63,6 +63,8 @@ class PrimaryLoader  {
             intermezzoStream.close()
         } catch (e: IOException) {
             Log.d(TAG, "[-] Failed to read intermezzo: " + e.toString())
+            injectionprogress.onFailed("Failed to read intermezzo")
+
             return
         }
 
@@ -76,6 +78,8 @@ class PrimaryLoader  {
             payload.put(getPayload(context,useSX))
         } catch (e: IOException) {
             Log.d(TAG, "[-] Failed to read payload: " + e.toString())
+            injectionprogress.onFailed("[-] Failed to read payload: " + e.toString())
+
             return
         }
 
@@ -90,12 +94,14 @@ class PrimaryLoader  {
             payload.get(chunk)
             if (conn.bulkTransfer(endpoint_out, chunk, chunk.size, 999) != chunk.size) {
                 Log.d(TAG, "[-] Sending payload failed at offset " + Integer.toString(bytes_sent))
+                injectionprogress.onFailed("[-] Sending payload failed at offset " + Integer.toString(bytes_sent))
+
                 return
             }
             low_buffer = low_buffer xor true
             bytes_sent += 0x1000
         }
-
+        injectionprogress.onCompleted()
         Log.d(TAG, "[+] Sent " + Integer.toString(bytes_sent) + " bytes")
 
         // 0x7000 = STACK_END = high DMA buffer address
@@ -153,5 +159,10 @@ class PrimaryLoader  {
         init {
             System.loadLibrary("native-lib")
         }
+    }
+
+    interface Injectionprogress {
+        fun onCompleted()
+        fun onFailed(errormsg:String)
     }
 }
