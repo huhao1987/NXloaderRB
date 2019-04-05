@@ -27,7 +27,7 @@
             android:layout_marginTop="10dp"
             android:text="@string/injecting"/>
     </RelativeLayout>
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -51,7 +51,7 @@
             android:textColor="@color/white"/>
 
         </RelativeLayout>
-    </android.support.v7.widget.Toolbar>
+    </androidx.appcompat.widget.Toolbar>
     <ScrollView
         android:layout_below="@+id/toolbar"
         android:layout_width="match_parent"
@@ -67,7 +67,7 @@
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:textColor="@color/red"/>
-    <android.support.v7.widget.SwitchCompat
+    <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/setsxosswitch"
         android:layout_below="@+id/switchstatus"
         android:layout_width="wrap_content"
@@ -123,7 +123,7 @@
         android:layout_centerHorizontal="true"
         android:textAllCaps="false"
         />
-        <android.support.v7.widget.SwitchCompat
+        <androidx.appcompat.widget.SwitchCompat
             android:layout_below="@id/injection"
             android:id="@+id/autoinjection"
             android:text="@string/autoinject"

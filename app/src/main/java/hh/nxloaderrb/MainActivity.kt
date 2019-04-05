@@ -7,7 +7,6 @@ import android.content.*
 import android.content.pm.PackageManager
 import android.hardware.usb.UsbDevice
 import android.hardware.usb.UsbManager
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
 import android.view.View
@@ -27,6 +26,7 @@ import android.os.Environment.MEDIA_MOUNTED
 import android.os.Looper
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import hh.nxloaderrb.utils.SDCardsUtils
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread

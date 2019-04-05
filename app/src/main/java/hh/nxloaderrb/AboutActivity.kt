@@ -1,11 +1,10 @@
 package hh.nxloaderrb
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_about.*
-import android.support.v4.view.accessibility.AccessibilityEventCompat.setAction
 import android.content.Intent
 import android.net.Uri
+import androidx.appcompat.app.AppCompatActivity
 
 
 class AboutActivity : AppCompatActivity() {
