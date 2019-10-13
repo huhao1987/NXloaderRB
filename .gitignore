@@ -10,3 +10,15 @@
 .externalNativeBuild
 .idea/
 app/release/
+*.json
+*.txt
+*.ninja
+*.cxx
+*.c
+*.bin
+*.check_cache
+*.log
+*.cmake
+*.ninja_log
+*.ninja_deps
+*.o
