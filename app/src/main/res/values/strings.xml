@@ -13,7 +13,7 @@
     <string name="sxosset">Use SX os bin</string>
     <string name="sxossetdes">Using SX os bin</string>
     <string name="autoinject">Auto injection</string>
-    <string name="sxtip">I am not quite sure about the SX os bin file works or not, because I don`t have the SX os or Pro, if it doesn`t work, you could private me the file or use the custom bin</string>
+    <string name="sxtip">SX Loader Version:1.0</string>
     <string name="filepathsrc">No bin file chosen</string>
     <string name="injectiontxt">Injection</string>
     <string name="orauthor">Code modification is based on %1$s</string>

@@ -10,7 +10,7 @@ android {
         applicationId "hh.nxloaderrb"
         minSdkVersion 22
         targetSdkVersion 29
-        versionCode 6
+        versionCode 7
         versionName "1.0.5"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 

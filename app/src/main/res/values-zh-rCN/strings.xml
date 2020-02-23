@@ -13,7 +13,7 @@
     <string name="sxosset">使用SX os的bin文件</string>
     <string name="sxossetdes">使用SX os的bin文件</string>
     <string name="autoinject">自动注入</string>
-    <string name="sxtip">我没用过SX设备或者SX os,所以也不太确定SX os的bin文件能不能用，如果用不了，可以自己选择bin文件注入</string>
+    <string name="sxtip">SX Loader 版本:1.0</string>
     <string name="filepathsrc">未选择bin文件</string>
     <string name="injectiontxt">注入</string>
     <string name="orauthor">代码基于 %1$s</string>
