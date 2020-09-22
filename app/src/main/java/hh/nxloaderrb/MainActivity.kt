@@ -7,6 +7,7 @@ import android.content.*
 import android.content.pm.PackageManager
 import android.hardware.usb.UsbDevice
 import android.hardware.usb.UsbManager
+import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.view.View
@@ -256,12 +257,22 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
+
 //    Init the elements and functions
     fun setItems()
     {
         setFile()
         var sharepreferences=getSharedPreferences("Config", Context.MODE_PRIVATE)
         useSX = sharepreferences.getBoolean("useSX", false)
+        opengithub.setOnClickListener {
+            var uri = Uri.parse("https://github.com/huhao1987/NXloaderRB")
+            val intent = Intent()
+            intent.action = "android.intent.action.VIEW"
+            intent.data = uri
+            startActivity(intent)
+        }
+
+
         setsxosswitch.isChecked=useSX
         if(useSX){
             filebtn.isClickable=false

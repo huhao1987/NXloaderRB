@@ -126,9 +126,6 @@ class PrimaryLoader  {
         val sharepreferences = context.getSharedPreferences("Config", Context.MODE_PRIVATE)
         val payload_name = sharepreferences.getString("binpath", null)
         var payload_file: InputStream
-        if(useSX)
-            payload_file = context.assets.open("SXOS.bin")
-        else {
             if (payload_name == null) {
                 Log.d(TAG, "[*] Opening SXOS payload")
                payload_file = context.assets.open("fusee.bin")
@@ -136,7 +133,6 @@ class PrimaryLoader  {
                 Log.d(TAG, "[*] Opening custom payload ($payload_name)")
                 payload_file = FileInputStream(payload_name)
             }
-        }
         val payload_data = ByteArray(payload_file.available())
         Log.d(TAG, "[+] Read " + Integer.toString(payload_file.read(payload_data)) + " bytes from payload file")
         payload_file.close()

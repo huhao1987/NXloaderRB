@@ -76,8 +76,9 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         app:switchPadding="10dp"
+        android:visibility="invisible"
         android:layout_centerInParent="true"
-        android:text="@string/sxosset"/>
+        android:text=""/>
     <TextView
         android:id="@+id/sxtip"
         android:layout_below="@+id/setsxosswitch"
@@ -132,6 +133,17 @@
             android:layout_height="wrap_content"
             app:switchPadding="20dp"
             android:layout_centerHorizontal="true"/>
+
+
+        <TextView
+            android:id="@+id/opengithub"
+            android:layout_below="@+id/autoinjection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="@string/mygithub"
+            android:textColor="@color/colorPrimaryDark" />
     </RelativeLayout>
     </ScrollView>
 </RelativeLayout>
