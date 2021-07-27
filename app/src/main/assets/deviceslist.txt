@@ -1,7 +1,9 @@
 Google Pixel 1:Android 10
+Google Pixel 3a:Android 11
 Google Pixel 3a XL:Android 11
 Google Pixel 4:Android 11
 Samsung Galaxy S10+:Android 10/11
+Samsung Galaxy S10 Lite:Android 11
 Samsung Galaxy S10e:Android 11
 Samsung Galaxy S9:Android 10
 Samsung Galaxy S9+:Android 10
