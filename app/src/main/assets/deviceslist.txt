@@ -19,6 +19,7 @@ Samsung Galaxy Note10+ 5G:Android 10
 Samsung Galaxy Note9:Android 10
 Samsung Galaxy Z Fold2 5G:Android 10
 Samsung Galaxy A70:Android 10
+Samsung Galaxy M30s:Android 11
 Huawei HUAWEI Mate 20 lite:Android 10
 Huawei Mate 10:Android 10
 Huawei Y9 Prime 2019:Android 10
