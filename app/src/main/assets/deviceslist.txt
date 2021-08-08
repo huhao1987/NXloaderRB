@@ -5,15 +5,17 @@ Google Pixel 4:Android 11
 Samsung Galaxy S10+:Android 10/11
 Samsung Galaxy S10 Lite:Android 11
 Samsung Galaxy S10e:Android 11
-Samsung Galaxy S9:Android 10
 Samsung Galaxy S9+:Android 10
+Samsung Galaxy S9:Android 10
 Samsung Galaxy J8:Android 10
 Samsung Galaxy S9+:Android 10
 Samsung Galaxy S9:Android 9
-Samsung Galaxy J7 Neo:Android 9
 Samsung Galaxy S8+:Android 9
 Samsung Galaxy S8 Active:Android 9
+Samsung Galaxy S20+ 5G:Android 11
 Samsung Galaxy S20 5G:Android 11
+Samsung Galaxy J7 Neo:Android 9
+Samsung Galaxy A20s:Android 11
 Samsung Galaxy Note20 Ultra 5G :Android 11
 Samsung Galaxy Note10+ 5G:Android 10
 Samsung Galaxy Note9:Android 10
