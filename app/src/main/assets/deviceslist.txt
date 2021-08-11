@@ -44,4 +44,6 @@ Motorola moto g(6) plus:Android 8.0
 Motorola Moto Z (2) Force:Android 8.0 
 LGE LG G7 ThinQ:Android 9
 SPC Universe FLOW_7:Android 7.0
+Ulefone Armor 3:Android 9
+Ulefone Armor 6E:Android 10
 Realme8:Unknown
