@@ -46,4 +46,7 @@ LGE LG G7 ThinQ:Android 9
 SPC Universe FLOW_7:Android 7.0
 Ulefone Armor 3:Android 9
 Ulefone Armor 6E:Android 10
+poco f3:Android 11
+poco x3 nfc:Android 11
+Oukitel wp7:Android 10
 Realme8:Unknown
