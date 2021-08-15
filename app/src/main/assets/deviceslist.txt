@@ -13,6 +13,7 @@ Samsung Galaxy S9:Android 9
 Samsung Galaxy S8+:Android 9
 Samsung Galaxy S8 Active:Android 9
 Samsung Galaxy S20+ 5G:Android 11
+Samsung Galaxy S20 FE:Android 11
 Samsung Galaxy S20 5G:Android 11
 Samsung Galaxy J7 Neo:Android 9
 Samsung Galaxy A20s:Android 11
@@ -31,7 +32,9 @@ Huawei HUAWEI nova 5T:Android 9
 Sony Xperia XA2:Android 9
 Sony Xperia XZ2:Android 9 
 Redmi Note 8 Pro:Android 10
+Redmi k40:Android 11
 OnePlus 8 Pro:Android 10
+OnePlus 8:Android 11
 OnePlus 7T:Android 10
 OnePlus 7T Pro:Android 10
 OnePlus OnePlus6T:Android 10
