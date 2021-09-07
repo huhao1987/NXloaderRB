@@ -33,6 +33,7 @@ Sony Xperia XA2:Android 9
 Sony Xperia XZ2:Android 9 
 Redmi Note 8 Pro:Android 10
 Redmi k40:Android 11
+OnPlus 6:Android 10
 OnePlus 8 Pro:Android 10
 OnePlus 8:Android 11
 OnePlus 7T:Android 10
@@ -43,9 +44,12 @@ Oppo F11 Pro:Android 11
 Xiaomi MI 9:Android 9
 Xiaomi MI 8:Android 10
 Xiaomi MI 8 SE:Android 10
+Motorola moto e6s:Android 9
 Motorola moto g(6) plus:Android 8.0
 Motorola Moto Z (2) Force:Android 8.0 
+Nokia5.1 Plus:Android 10
 LGE LG G7 ThinQ:Android 9
+LGE V40 ThinQ:Android 9
 SPC Universe FLOW_7:Android 7.0
 Ulefone Armor 3:Android 9
 Ulefone Armor 6E:Android 10
