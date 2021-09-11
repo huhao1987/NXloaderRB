@@ -41,6 +41,7 @@ OnePlus 7T Pro:Android 10
 OnePlus OnePlus6T:Android 10
 Oneplus 5:Android 9
 Oppo F11 Pro:Android 11
+Oppo Reno:Android 10:Setting->Additional settings->OTG connection
 Xiaomi MI 9:Android 9
 Xiaomi MI 8:Android 10
 Xiaomi MI 8 SE:Android 10
