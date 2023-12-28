@@ -40,6 +40,7 @@ OnePlus 7T:Android 10
 OnePlus 7T Pro:Android 10
 OnePlus OnePlus6T:Android 10
 Oneplus 5:Android 9
+OnePlus Pad:Android 13
 Oppo F11 Pro:Android 11
 Oppo Reno:Android 10:Setting->Additional settings->OTG connection
 Xiaomi MI 9:Android 9
@@ -49,6 +50,7 @@ Motorola moto e6s:Android 9
 Motorola moto g(6) plus:Android 8.0
 Motorola Moto Z (2) Force:Android 8.0 
 Nokia5.1 Plus:Android 10
+Nothing (1):Android 13
 LGE LG G7 ThinQ:Android 9
 LGE V40 ThinQ:Android 9
 SPC Universe FLOW_7:Android 7.0
