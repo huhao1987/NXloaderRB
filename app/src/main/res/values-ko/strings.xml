@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">NXloaderRB</string>
+    <string-array name="menu">
+        <item>주입</item>
+        <item>정보</item>
+    </string-array>
+    <string name="devicenotconnection">장치가 연결되지 않음</string>
+    <string name="deviceconnection">장치가 연결됨<string>
+    <string name="filebtn">저장소 선택</string>
+    <string name="fileselmsg">저장소 파일 선택</string>
+    <string name="filesepo">선택</string>
+    <string name="filesena">취소</string>
+    <string name="sxosset">SX OS 저장소 사용</string>
+    <string name="sxossetdes">SX OS 저장소 사용</string>
+    <string name="autoinject">자동 주입</string>
+    <string name="sxtip">SX 로더 버전:1.0</string>
+    <string name="filepathsrc">저장소 파일을 선택하지 않았음</string>
+    <string name="injectiontxt">주입</string>
+    <string name="orauthor">%1$s에 기반한 코드 수정</string>
+    <string name="orauthor2">Fusée Gelée에 비중있게 기반함</string>
+    <string name="aboutdes">이 앱이 완료된 이유는 내 자신의 저장소 파일을 선택할 때 NXLoader가 내 장치에서 잘 실행되지 않기 때문입니다. 그럼 스위치를 즐겨보세요.</string>
+    <string name="sdchoose">저장소 선택</string>
+    <string name="insd">내부 저장소</string>
+    <string name="outsd">SD 카드</string>
+    <string name="injecting">저장소에 주입 중...</string>
+    <string name="injectsuccess">주입 성공</string>
+    <string name="mygithub">깃허브 페이지 열기</string>
+
+</resources>
